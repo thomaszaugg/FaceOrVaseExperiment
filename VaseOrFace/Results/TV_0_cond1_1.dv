@@ -1,0 +1,71 @@
+PROG = "TaskVernier.m (06.08.2024 18:01) <- TaskVernier_run.m (08.08.2024 10:45)"
+GRAPHICS = "Radeon(TM) RX 460 Graphics (core=R600), GL 4.6.14830 (CPC) 21.4.1 27.20.21002.112"
+HOSTNAME = "SV-09-031"
+SYSTEM = "Windows [Version 10.0.19045.4529]"
+SING_SERVICE = "not installed"
+WLBUTTONS_INFO = "SN=11, Ver=0.0, RSSI(n=0)=-(?/?/?)dB, LostCnt=0, Batt=?, Events=?/?"
+TOOL = "MATLAB [9.13.0.2553342 (R2022b) Update 9]; PsychTB [3.0.17.581582724]; LpsyTB [1.4.45]"
+FLIP_CMD_INFO = "-0.80, 1.10, 0"
+LOCATION = "Long room"
+SYSSETUP_PATH = "C:\Program Files (x86)\SING\General"
+DISPLAY = "LCD ASUS VG248QE, 1920·1080@120Hz/32bpp, 53.0·29.8cm, dist=74.0cm"
+GAMMA_TAB = "Gamma=1.00 with ID vals from system.setup using measured white curve"
+START_TIME = 1723107889   ;08.08.2024, 11h04
+END_TIME = 1723107918   ;start + 00:00.29
+FLIP_STATS = "[RT off] No errors"
+
+INCLUDE "TaskVernier.idv"
+
+
+SETUP:
+"Screen distance" 74 "cm"
+"Practice trials" 0 ""
+"Start trial repetitions (min/max)": "[3,6]"
+"Trials" 3 ""
+"Volume of negative feedback beep" 20 "%"
+"Volume of warning beep (e.g. early response)" 20 "%"
+"Vernier duration" 500 "ms" 500.0
+"Vernier length (total, including gap)" 2500 "arcsec" 2462.2
+"Vernier vertical gap size" 0 "arcsec" 0.0
+"Vernier offset (possibly PEST start)" 100 "arcsec" 100.0
+"Vernier orientation" 0 "degree"
+"PEST/QUEST: Target parameter": "Vofs"
+"QUEST: Threshold SD (sigma of prior p.d.f.)" 91 "dB"
+"QUEST: Slope (CumGauss sigma)" 3 "dB"
+"QUEST: Lapse rate" 8.0 "%"
+"QUEST: Smallest test value" 1 "arcsec" 7.7
+"QUEST: Biggest test value" 450 "arcsec" 450.0
+"Response timeout (WRT vernier onset, 0:infinite)" 30 "s"
+"ITI (time from response to next vernier onset)": "[0.80, 1.20] s"
+"Line rendering mode": "aaL"
+"Line width" 75 "arcsec" 76.9
+"--> Line width" 1.0 "pix" 1.00
+"Line Color": "[100 100 100]"
+"Fixation Cross Size" 300 "arcsec" 300.0
+"Fixation Cross Line Width" 120 "arcsec" 120.0
+"Fixation Cross Duration" 0.9 "s"
+"Experiment Condition" 1 ""
+"Vernier Orientation" 0 "degrees"
+"Peripheral Presentation" 1 ""
+"Peripheral Offset" 6 "arcdeg" 6.0
+"Peripheral Direction" 2 ""
+"Background luminance" 50.0 "%" 50.00
+"X position jitter (±, continuous)" 1.9 "pix" 1.90
+"Y position jitter (±, whole pixels)" 1.9 "pix" 2.00
+"Bug mode (0: no bug)" 0 ""
+"Screen #" 0 ""
+"--> QUEST: Threshold (L/R offset pooled, w/o prior)" 54.00 "arcsec"
+SETUP_END
+
+
+POOL[0].DATA:	POOL	LEVEL	VALID	HITS	REACT_TI	isEarly	isPractice	vOfsDir	answerDir	vOfs	vDur	iti	vOnsetTi	stimSide	fc_dur
+	156 	100 	1 	1 	1190 	0 	1 	1 	1 	100.0 	400.0 	1193 	0.000 	1 	0.8824 
+	155 	100 	1 	1 	400 	0 	1 	-1 	-1 	100.0 	400.0 	1062 	3.742 	1 	0.9056 
+	155 	100 	1 	0 	284 	0 	1 	-1 	1 	100.0 	400.0 	964 	6.626 	1 	0.9785 
+	155 	100 	1 	1 	556 	0 	1 	-1 	-1 	100.0 	400.0 	1131 	10.018 	1 	1.2663 
+	156 	100 	1 	1 	655 	0 	1 	1 	1 	100.0 	400.0 	909 	12.510 	1 	0.4571 
+	152 	100 	1 	1 	664 	0 	0 	1 	1 	100.0 	400.0 	1180 	15.494 	1 	0.5577 
+	152 	37 	1 	0 	528 	0 	0 	1 	-1 	37.3 	400.0 	1128 	18.470 	1 	0.6140 
+	152 	66 	1 	1 	617 	0 	0 	1 	1 	65.8 	400.0 	1072 	21.028 	1 	0.4121 
+DATA_END
+
