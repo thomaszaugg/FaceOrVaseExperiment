@@ -24,7 +24,7 @@ function p = MakeP()
     p.VernierLength = 2500; % arcsec
     p.VernierGap = 0;
     p.LineWidth = 150;       % CHECK+
-    p.VernierDuration = 1000;%200; %75; % 100 ms
+    p.VernierDuration = 100;%200; %75; % 100 ms
     p.VernierOri = 0;
 
     %Image
