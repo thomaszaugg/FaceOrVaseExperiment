@@ -1,8 +1,8 @@
 clear
-quick_mode=1;
+quick_mode=0;
 KbName('UnifyKeyNames')
 addpath("Elements\")
-subjnr =4; %input('Subject Code? ','s');
+subjnr =input('Subject Code? ','s');
 DvFilename = strcat('results\MooreRate_',subjnr,'.dv');
 
 trial_list = MakeTL(quick_mode);
@@ -69,6 +69,7 @@ try
         cond = trial_list(trial);
         p.cond = cond;
         minusPlusOne = [-1,1];         % -1: left: 1:right
+
         vOffsetDir = minusPlusOne(randi(2));
 
 
@@ -128,30 +129,29 @@ try
                 error('Invalid condition specified in p.cond');
             end
 
-        keyListEscape = KbName({'esc'});
-        keyList = KbName({'left','right'});        
+        keyListUp = KbName({'space'});
+        % we take "a" to mean "VASE" (records -1) and  "l" to mean "face" (records 1)
+        keyList = KbName({'a','l'});        
 
         Screen('FillRect', sci.wnd, BgLum, [], []);
-        DrawFormattedText(sci.wnd, 'Press a key to continue', center(1)-300, center(2), [255 255 255]);
+        DrawFormattedText(sci.wnd, 'Press space to continue', center(1)-300, center(2), [255 255 255]);
         lpsy.flip(sci.wnd);
 
-        [isEsc, keyIdx, time] = lpsy.getKey(keyList, 200);
+        [isEsc, keyIdx, time] = lpsy.getKey(keyListUp, 200);
        
+        Screen('FillRect', sci.wnd, BgLum, [], []);
+        lpsy.flip(sci.wnd);
+        
 
-        %random wait
-                fd = p.fc_dur+(rand()-0.5)/2; % randomness between -0.25 and 0.25
-                WaitSecs(fd);
-
-              
         DrawFixationCross_basic(sci, pp, center(1), center(2))
         lpsy.flip(sci.wnd);
        
-        %change fixation cross
         
+        %random wait
+                fd = p.fc_dur+(rand()-0.5);
+                WaitSecs(fd);
 
-       
-  
-       DrawBoarder(sci, pp, posx, posy, p.cond);
+       %draw the stimulus
        DrawFixationCross_basic(sci, pp, center(1), center(2))
        vasetex = DrawVase(sci, pp, posx, posy, p.cond);
        
@@ -180,30 +180,32 @@ try
             %--- We have a response.
             answerTi = 1000*(responseSecs-vernierOnsetSecs);
             %--- Check for early response.
-            answerDir = minusPlusOne(keyIdx);
+            isFaceMap = [0, 1];
+            isFace = isFaceMap(keyIdx);
         else
             % No answer
             answerTi = 0;
             isHit = 0;
-            answerDir = 99;
+            isFace = 99;
         end
 % 
 % 
         results(trial, 1) = vOffsetDir;
-        results(trial, 2) = answerDir;
+        results(trial, 2) = isFace;
         results(trial, 3) = answerTi;
         results(trial, 4) = p.cond;
 %         results(trial, 4) = answerTi;
+       
     end
 
 
     lpsy.showInfoScreen(wnd, "DONE", 0);
     lpsy.cleanup();
-
-    writematrix(results, strcat('results/jdgmt_', subjnr, '.csv'));
+ 
+   writematrix(results, strcat('results/jdgmt_', subjnr, '.csv'));
 
 catch err
-
+ writematrix(results, strcat('results/jdgmt_', subjnr, '.csv'));
     lpsy.cleanup(err);
 end
 

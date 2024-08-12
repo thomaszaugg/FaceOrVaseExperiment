@@ -19,11 +19,11 @@ function TL_org = MakeTL(short)
 
     %% Original
     if short 
-        nrep = 2;
-        conds_o = [4,6,7,9];
+        nrep = 1;
+        conds_o = [4,5,6,7,8,9];
     else
-        nrep = 80;
-        conds_o = [1,2,3,4,5,6];
+        nrep = 20;
+        conds_o = [4,5,6,7,8,9];
     end
 
     % then sides randomly
